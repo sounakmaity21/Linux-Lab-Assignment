@@ -1,0 +1,75 @@
+Question 2 – Secure Project Workspace Setup
+
+Command:
+mkdir Project_Workspace
+
+Output:
+(No output)
+
+Explanation:
+This command creates the main project workspace directory.
+
+--------------------------------------------------
+
+Command:
+mkdir Documents Scripts Backups
+
+Output:
+(No output)
+
+Explanation:
+This command creates separate directories to organize project documents, scripts, and backups.
+
+--------------------------------------------------
+
+Command:
+ls -l
+
+Output:
+total 12
+drwxrwxr-x 2 ubuntu ubuntu 4096 Jul  2 05:24 Backups
+drwxrwxr-x 2 ubuntu ubuntu 4096 Jul  2 05:24 Documents
+drwxrwxr-x 2 ubuntu ubuntu 4096 Jul  2 05:24 Scripts
+
+
+Explanation:
+This command lists the directory contents and their permissions before modification.
+
+--------------------------------------------------
+
+Command:
+chmod 755 Scripts/deploy.sh
+
+Output:
+(No output)
+
+Explanation:
+This command grants the owner full permissions and allows others to read and execute the script.
+
+--------------------------------------------------
+
+Command:
+chmod 600 Backups/backup.log
+
+Output:
+(No output)
+
+Explanation:
+This command restricts access to the backup log so only the owner can read and write it.
+
+--------------------------------------------------
+
+Command:
+umask
+
+Output:
+0002
+
+Explanation:
+This command displays the default permission mask used when creating new files and directories.
+
+--------------------------------------------------
+
+Conclusion:
+Changing file permissions protects sensitive project files by restricting unauthorized access while allowing appropriate access for required users.
+

@@ -1,0 +1,122 @@
+Question 3 – File System and Link Analysis
+
+--------------------------------------------------
+
+Command:
+echo "Linux File System Experiment" > original.txt
+
+Output:
+(No output)
+
+Explanation:
+This command creates a new file named original.txt and writes the specified text into it.
+
+--------------------------------------------------
+
+Command:
+ln original.txt hardlink.txt
+
+Output:
+(No output)
+
+Explanation:
+This command creates a hard link. The hard link points directly to the same inode as the original file.
+
+--------------------------------------------------
+
+Command:
+ln -s original.txt symlink.txt
+
+Output:
+(No output)
+
+Explanation:
+This command creates a symbolic link that stores the pathname of the original file.
+
+--------------------------------------------------
+
+Command:
+ls -li
+
+Output:
+total 8
+262432 -rw-rw-r-- 2 ubuntu ubuntu 29 Jul  2 06:08 hardlink.txt
+262432 -rw-rw-r-- 2 ubuntu ubuntu 29 Jul  2 06:08 original.txt
+262434 lrwxrwxrwx 1 ubuntu ubuntu 12 Jul  2 06:10 symlink.txt -> original.txt
+
+
+Explanation:
+This command lists files with their inode numbers. The original file and hard link share the same inode, while the symbolic link has a different inode.
+
+--------------------------------------------------
+
+Command:
+stat original.txt
+
+Output:
+  File: original.txt
+  Size: 29 	Blocks: 8          IO Block: 4096   regular file
+Device: fd00h/64768d	Inode: 262432      Links: 2
+Access: (0664/-rw-rw-r--)  Uid: ( 1000/  ubuntu)   Gid: ( 1000/  ubuntu)
+Access: 2026-07-02 06:09:02.596354364 +0000
+Modify: 2026-07-02 06:08:53.080481550 +0000
+Change: 2026-07-02 06:10:01.599422018 +0000
+ Birth: 2026-07-02 06:08:53.080481550 +0000
+
+
+Explanation:
+This command displays detailed metadata such as size, permissions, owner, timestamps, and inode information.
+
+--------------------------------------------------
+
+Command:
+rm original.txt
+
+Output:
+(No output)
+
+Explanation:
+This command removes the original file.
+
+--------------------------------------------------
+
+Command:
+cat hardlink.txt
+
+Output:
+Linux File System Experiment
+
+Explanation:
+The hard link still works because it references the same inode as the deleted original file.
+
+--------------------------------------------------
+
+Command:
+cat symlink.txt
+
+Output:
+cat: symlink.txt: No such file or directory
+
+Explanation:
+The symbolic link becomes broken because it references the pathname of the deleted original file.
+
+--------------------------------------------------
+
+Comparison
+
+Hard Link
+• Shares the same inode as the original file.
+• Continues to work after the original file is deleted.
+• Cannot normally span different file systems.
+
+Symbolic Link
+• Has its own inode.
+• Stores the pathname of the original file.
+• Becomes broken if the original file is deleted.
+• Can point across different file systems.
+
+--------------------------------------------------
+
+Conclusion
+
+The experiment demonstrates that hard links reference the same underlying file data through a shared inode, whereas symbolic links reference a file by its path. Deleting the original file does not affect the hard link, but it breaks the symbolic link because its target path no longer exists.

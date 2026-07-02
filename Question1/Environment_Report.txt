@@ -1,0 +1,95 @@
+Question 1 – Linux Environment Verification
+
+Command:
+whoami
+
+Output:
+ubuntu
+
+Explanation:
+This command displays the username of the currently logged-in user. The output shows that the current user is ubuntu.
+
+--------------------------------------------------
+
+Command:
+id
+
+Output:
+uid=1000(ubuntu) gid=1000(ubuntu) groups=1000(ubuntu),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),110(lxd)
+
+Explanation:
+This command displays the user ID, group ID, and associated groups. It confirms the identity and permissions of the current user.
+
+--------------------------------------------------
+
+Command:
+echo $SHELL
+
+Output:
+/bin/bash
+
+Explanation:
+This command prints the default shell being used by the current user.
+
+--------------------------------------------------
+
+Command:
+pwd
+
+Output:
+/home/ubuntu
+
+Explanation:
+This command displays the current working directory from which commands are executed.
+
+--------------------------------------------------
+
+Command:
+ls -la
+
+Output:
+total 76
+drwxr-x--- 15 ubuntu ubuntu 4096 Oct 21  2023 .
+drwxr-xr-x  3 root   root   4096 Oct 21  2023 ..
+-rw-------  1 ubuntu ubuntu   94 Jul  2 04:18 .bash_history
+-rw-r--r--  1 ubuntu ubuntu  220 Jan  6  2022 .bash_logout
+-rw-r--r--  1 ubuntu ubuntu 3771 Jan  6  2022 .bashrc
+drwx------ 10 ubuntu ubuntu 4096 Oct 21  2023 .cache
+drwx------ 11 ubuntu ubuntu 4096 Oct 21  2023 .config
+drwx------  2 ubuntu ubuntu 4096 Jul  1 18:47 .gnupg
+drwx------  3 ubuntu ubuntu 4096 Oct 21  2023 .local
+-rw-r--r--  1 ubuntu ubuntu  807 Jan  6  2022 .profile
+drwx------  2 ubuntu ubuntu 4096 Oct 21  2023 .ssh
+-rw-r--r--  1 ubuntu ubuntu    0 Oct 21  2023 .sudo_as_admin_successful
+drwxr-xr-x  2 ubuntu ubuntu 4096 Oct 21  2023 Desktop
+drwxr-xr-x  2 ubuntu ubuntu 4096 Oct 21  2023 Documents
+drwxr-xr-x  2 ubuntu ubuntu 4096 Oct 21  2023 Downloads
+drwxr-xr-x  2 ubuntu ubuntu 4096 Oct 21  2023 Music
+drwxr-xr-x  2 ubuntu ubuntu 4096 Oct 21  2023 Pictures
+drwxr-xr-x  2 ubuntu ubuntu 4096 Oct 21  2023 Public
+drwxr-xr-x  2 ubuntu ubuntu 4096 Oct 21  2023 Templates
+drwxr-xr-x  2 ubuntu ubuntu 4096 Oct 21  2023 Videos
+
+
+Explanation:
+This command lists all files and directories, including hidden files, with detailed information.
+
+--------------------------------------------------
+
+Command:
+ping -c 4 google.com
+
+Output:
+PING google.com (142.251.220.110) 56(84) bytes of data.
+64 bytes from hkg07s52-in-f14.1e100.net (142.251.220.110): icmp_seq=1 ttl=115 time=67.5 ms
+64 bytes from hkg07s52-in-f14.1e100.net (142.251.220.110): icmp_seq=2 ttl=115 time=104 ms
+64 bytes from pnmaaa-be-in-f14.1e100.net (142.251.220.110): icmp_seq=3 ttl=115 time=129 ms
+64 bytes from hkg07s52-in-f14.1e100.net (142.251.220.110): icmp_seq=4 ttl=115 time=341 ms
+
+--- google.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3008ms
+rtt min/avg/max/mdev = 67.469/160.426/340.977/106.519 ms
+
+
+Explanation:
+This command verifies network connectivity by sending four packets to google.com. Receiving replies confirms that the network connection is working properly.

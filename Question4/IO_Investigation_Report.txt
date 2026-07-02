@@ -1,0 +1,111 @@
+Question 4 – File Access and I/O Investigation
+
+--------------------------------------------------
+
+Command:
+lsof sample.txt
+
+Output:
+(no output)
+
+Explanation:
+This command lists processes that currently have the file open. If no output is shown, no process is using the file.
+
+--------------------------------------------------
+
+Command:
+ls -l /proc/$$/fd
+
+Output:
+total 0
+lrwx------ 1 ubuntu ubuntu 64 Jul  2 06:31 0 -> /dev/pts/3
+lrwx------ 1 ubuntu ubuntu 64 Jul  2 06:31 1 -> /dev/pts/3
+lrwx------ 1 ubuntu ubuntu 64 Jul  2 06:31 2 -> /dev/pts/3
+lrwx------ 1 ubuntu ubuntu 64 Jul  2 06:31 255 -> /dev/pts/3
+
+
+Explanation:
+This command displays the file descriptors used by the current shell process.
+
+--------------------------------------------------
+
+Command:
+echo "Hello Linux" > output.txt
+
+Output:
+(No output)
+
+Explanation:
+This command redirects standard output into a file.
+
+--------------------------------------------------
+
+Command:
+echo "Second Line" >> output.txt
+
+Output:
+(No output)
+
+Explanation:
+This command appends data to the existing file.
+
+--------------------------------------------------
+
+Command:
+ls does_not_exist 2> error.txt
+
+Output:
+(No terminal output)
+
+Explanation:
+The error message is redirected into error.txt using standard error redirection.
+
+--------------------------------------------------
+
+Command:
+cat error.txt
+
+Output:
+ls: cannot access 'does_not_exist': No such file or directory
+
+Explanation:
+This command displays the captured error message.
+
+--------------------------------------------------
+
+Command:
+ulimit -a
+
+Output:
+real-time non-blocking time  (microseconds, -R) unlimited
+core file size              (blocks, -c) 0
+data seg size               (kbytes, -d) unlimited
+scheduling priority                 (-e) 0
+file size                   (blocks, -f) unlimited
+pending signals                     (-i) 15061
+max locked memory           (kbytes, -l) 500636
+max memory size             (kbytes, -m) unlimited
+open files                          (-n) 1024
+pipe size                (512 bytes, -p) 8
+POSIX message queues         (bytes, -q) 819200
+real-time priority                  (-r) 0
+stack size                  (kbytes, -s) 8192
+cpu time                   (seconds, -t) unlimited
+max user processes                  (-u) 15061
+virtual memory              (kbytes, -v) unlimited
+file locks                          (-x) unlimited
+
+
+Explanation:
+This command displays the current resource limits configured for the shell.
+
+--------------------------------------------------
+
+Technical Observations
+
+• Linux uses file descriptors to manage input, output, and error streams.
+• Standard input uses descriptor 0.
+• Standard output uses descriptor 1.
+• Standard error uses descriptor 2.
+• Output and errors can be redirected independently.
+• Resource limits help protect the system from excessive resource usage.

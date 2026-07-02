@@ -1,0 +1,128 @@
+Question 5 – Storage Health Assessment
+
+--------------------------------------------------
+
+Command:
+lsblk
+
+Output:
+NAME                      MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+loop0                       7:0    0  68.5M  1 loop /snap/core22/867
+loop1                       7:1    0     4K  1 loop /snap/bare/5
+loop2                       7:2    0 226.7M  1 loop /snap/firefox/3259
+loop3                       7:3    0 475.1M  1 loop /snap/gnome-42-2204/143
+loop4                       7:4    0  91.7M  1 loop /snap/gtk-common-themes/1535
+loop5                       7:5    0  35.5M  1 loop /snap/snapd/20298
+loop6                       7:6    0    69M  1 loop /snap/core22/2412
+sr0                        11:0    1  1024M  0 rom  
+vda                       252:0    0    64G  0 disk 
+├─vda1                    252:1    0     1G  0 part /boot/efi
+├─vda2                    252:2    0     2G  0 part /boot
+└─vda3                    252:3    0  60.9G  0 part 
+  └─ubuntu--vg-ubuntu--lv 253:0    0  30.5G  0 lvm  /var/snap/firefox/common/host-hunspell
+                                                    /
+
+
+Explanation:
+This command lists all available block storage devices and their partition layout.
+
+--------------------------------------------------
+
+Command:
+df -h
+
+Output:
+Filesystem                         Size  Used Avail Use% Mounted on
+tmpfs                              392M  1.8M  390M   1% /run
+/dev/mapper/ubuntu--vg-ubuntu--lv   30G   10G   19G  36% /
+tmpfs                              2.0G     0  2.0G   0% /dev/shm
+tmpfs                              5.0M  4.0K  5.0M   1% /run/lock
+/dev/vda2                          2.0G  134M  1.7G   8% /boot
+/dev/vda1                          1.1G  6.4M  1.1G   1% /boot/efi
+tmpfs                              392M  132K  391M   1% /run/user/1000
+
+Explanation:
+This command displays disk usage statistics in a human-readable format.
+
+--------------------------------------------------
+
+Command:
+df -i
+
+Output:
+Filesystem                         Inodes  IUsed   IFree IUse% Mounted on
+tmpfs                              500639    995  499644    1% /run
+/dev/mapper/ubuntu--vg-ubuntu--lv 1998848 169452 1829396    9% /
+tmpfs                              500639      1  500638    1% /dev/shm
+tmpfs                              500639      5  500634    1% /run/lock
+/dev/vda2                          131072    256  130816    1% /boot
+/dev/vda1                               0      0       0     - /boot/efi
+tmpfs                              100127    150   99977    1% /run/user/1000
+
+
+Explanation:
+This command displays inode utilization for mounted file systems.
+
+--------------------------------------------------
+
+Command:
+mount
+
+Output:
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+udev on /dev type devtmpfs (rw,nosuid,relatime,size=1927864k,nr_inodes=481966,mode=755,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,noexec,relatime,size=400512k,mode=755,inode64)
+efivarfs on /sys/firmware/efi/efivars type efivarfs (rw,nosuid,nodev,noexec,relatime)
+/dev/mapper/ubuntu--vg-ubuntu--lv on / type ext4 (rw,relatime)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,inode64)
+tmpfs on /run/lock type tmpfs (rw,nosuid,nodev,noexec,relatime,size=5120k,inode64)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime)
+bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime,mode=700)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=29,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=20979)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,pagesize=2M)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime)
+tracefs on /sys/kernel/tracing type tracefs (rw,nosuid,nodev,noexec,relatime)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+binfmt_misc on /proc/sys/fs/binfmt_misc type binfmt_misc (rw,nosuid,nodev,noexec,relatime)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+none on /run/credentials/systemd-sysusers.service type ramfs (ro,nosuid,nodev,noexec,relatime,mode=700)
+/var/lib/snapd/snaps/core22_867.snap on /snap/core22/867 type squashfs (ro,nodev,relatime,errors=continue,x-gdu.hide)
+/var/lib/snapd/snaps/bare_5.snap on /snap/bare/5 type squashfs (ro,nodev,relatime,errors=continue,x-gdu.hide)
+/var/lib/snapd/snaps/firefox_3259.snap on /snap/firefox/3259 type squashfs (ro,nodev,relatime,errors=continue,x-gdu.hide)
+/var/lib/snapd/snaps/gnome-42-2204_143.snap on /snap/gnome-42-2204/143 type squashfs (ro,nodev,relatime,errors=continue,x-gdu.hide)
+/var/lib/snapd/snaps/gtk-common-themes_1535.snap on /snap/gtk-common-themes/1535 type squashfs (ro,nodev,relatime,errors=continue,x-gdu.hide)
+/var/lib/snapd/snaps/snapd_20298.snap on /snap/snapd/20298 type squashfs (ro,nodev,relatime,errors=continue,x-gdu.hide)
+/dev/mapper/ubuntu--vg-ubuntu--lv on /var/snap/firefox/common/host-hunspell type ext4 (ro,noexec,noatime)
+/dev/vda2 on /boot type ext4 (rw,relatime)
+/dev/vda1 on /boot/efi type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro)
+tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,size=400508k,nr_inodes=100127,mode=700,uid=1000,gid=1000,inode64)
+gvfsd-fuse on /run/user/1000/gvfs type fuse.gvfsd-fuse (rw,nosuid,nodev,relatime,user_id=1000,group_id=1000)
+portal on /run/user/1000/doc type fuse.portal (rw,nosuid,nodev,relatime,user_id=1000,group_id=1000)
+/var/lib/snapd/snaps/core22_2412.snap on /snap/core22/2412 type squashfs (ro,nodev,relatime,errors=continue,x-gdu.hide)
+
+Explanation:
+This command lists all mounted file systems currently available on the system.
+
+--------------------------------------------------
+
+Storage Health Observations
+
+• The mounted file systems have sufficient available storage.
+• Disk usage is within acceptable limits.
+• Inode utilization is low, indicating plenty of available inodes.
+• No storage partition appears to be critically full.
+
+--------------------------------------------------
+
+Recommendations
+
+• Regularly monitor disk usage.
+• Remove unnecessary files to free storage space.
+• Monitor inode utilization on systems with many small files.
+• Perform periodic backups.
+• Review storage utilization regularly to avoid running out of disk space.
